@@ -1,0 +1,28 @@
+name: Build and validate
+
+on: push
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            install-script: sudo apt-get install gfortran
+          - os: macos-latest
+            install-script: brew install gfortran
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install requirements
+      run: ${{ matrix.install-script }}
+    - name: Check for fortran compiler
+      run: |
+        which gfortran
+        gfortran --version
+    - name: Test gfortran
+      run: |
+        gfortran -o simple_fortran_program simple_fortran_program.f
+        ./simple_fortran_program
