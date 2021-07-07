@@ -22,7 +22,7 @@ jobs:
       run: |
         which gfortran
         gfortran --version
-    # - name: Test gfortran
-    #   run: |
-    #     gfortran -o simple_fortran_program simple_fortran_program.f
-    #     ./simple_fortran_program
+    - name: Test gfortran
+      run: |
+        gfortran simple_fortran_program.f -o simple_fortran_program
+        ./simple_fortran_program
