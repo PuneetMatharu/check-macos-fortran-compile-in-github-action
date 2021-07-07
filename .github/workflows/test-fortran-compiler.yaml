@@ -9,9 +9,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            install-script: sudo apt-get install gfortran
+            install-script: sudo apt-get install make automake libtool libtool-bin autoconf doxygen gfortran g++
           - os: macos-latest
-            install-script: brew reinstall gfortran
+            install-script: |
+              brew install make automake libtool autoconf doxygen
+              brew reinstall gfortran
 
     runs-on: ${{ matrix.os }}
     steps:
