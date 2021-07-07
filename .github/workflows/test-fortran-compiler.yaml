@@ -11,7 +11,7 @@ jobs:
           - os: ubuntu-latest
             install-script: sudo apt-get install gfortran
           - os: macos-latest
-            install-script: brew install gfortran
+            install-script: brew reinstall gfortran
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -22,7 +22,7 @@ jobs:
       run: |
         which gfortran
         gfortran --version
-    - name: Test gfortran
-      run: |
-        gfortran -o simple_fortran_program simple_fortran_program.f
-        ./simple_fortran_program
+    # - name: Test gfortran
+    #   run: |
+    #     gfortran -o simple_fortran_program simple_fortran_program.f
+    #     ./simple_fortran_program
